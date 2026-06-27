@@ -31,6 +31,11 @@ __global__ void _brane_render_cuda(
 
     float aspect_ratio = (float)w / (float)h;  
 
+    //R_max logic
+    int n_max_deg = max(max_deg_n, max_deg_m);
+    float R_max_sq = 2.0f * n_max_deg + 1.0f;
+    float R_cull_sq = R_max_sq + 22.0f;
+
     for(int hi=0; hi<h; hi++){
         float curh_f = 2.0f * hi / (h - 1) - 1.0f;
         float dy = curh_f - y0;
@@ -46,9 +51,25 @@ __global__ void _brane_render_cuda(
             float x_prime = (dx * cos_t + dy * sin_t) / sigma_x;
             float y_prime = (-dx * sin_t + dy * cos_t) / sigma_y;
 
+            //R_max logic
+            float r_sq = x_prime * x_prime + y_prime * y_prime;
+            if (use_rmax && r_sq > R_cull_sq) continue;
+
             // Base Envelope
             float envelope = exp(-0.5f * (x_prime * x_prime + y_prime * y_prime));
-            if (use_rmax && envelope < 1e-5f) continue; // Skip computing per frammenti invisibili
+
+            //just to understand when, using only the base envelop, we should discard the brane VS. using R_max.
+            // if (use_rmax) {
+            //     bool old_cut = (envelope < 1e-5f);
+                
+            //     if (old_cut) {
+            //         if (n_max_deg > 0 && curs % 1000 == 0 && wi % 10 == 0 && hi % 10 == 0) {
+            //             printf(">>> SALVATO! Brana %d | Grado: %d | r^2: %.2f | env: %.8f | R_cull_sq: %.8f\n", 
+            //                    curs, n_max_deg, r_sq, envelope, R_cull_sq);
+            //         }
+            //     }
+            // }
+
 
             // Local Vectors in Registers for Hermite Polynomials
             float Hx[MAX_DEGREE + 1];
@@ -119,7 +140,14 @@ __global__ void _brane_render_backward_cuda(
     float grad_sigma_x_acc = 0.0f, grad_sigma_y_acc = 0.0f;
     float grad_theta_acc = 0.0f, grad_x0_acc = 0.0f, grad_y0_acc = 0.0f;
 
-    float aspect_ratio = (float)w / (float)h;  
+    float aspect_ratio = (float)w / (float)h;
+
+
+    //R_max logic
+    int n_max_deg = max(max_deg_n, max_deg_m);
+    float R_max_sq = 2.0f * n_max_deg + 1.0f;
+    float R_cull_sq = R_max_sq + 22.0f;
+
 
     for(int hi = 0; hi < h; hi++){
         for(int wi = 0; wi < w; wi++){
@@ -134,8 +162,12 @@ __global__ void _brane_render_backward_cuda(
             float x_prime = (dx * cos_t + dy * sin_t) / sigma_x;
             float y_prime = (-dx * sin_t + dy * cos_t) / sigma_y;
 
+            //R_max logic
+            float r_sq = x_prime * x_prime + y_prime * y_prime;
+            if (use_rmax && r_sq > R_cull_sq) continue;
+
             float envelope = exp(-0.5f * (x_prime * x_prime + y_prime * y_prime));
-            if (use_rmax && envelope < 1e-5f) continue;
+            // if (use_rmax && envelope < 1e-5f) continue;
 
             float Hx[MAX_DEGREE + 1]; float Hy[MAX_DEGREE + 1];
             Hx[0] = 1.0f; if (max_deg_n > 0) Hx[1] = 2.0f * x_prime;

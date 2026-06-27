@@ -16,3 +16,6 @@ data/benchmarks/*
 # 7) Ignora il contenuto di checkpoints, ma mantieni la cartella
 checkpoints/*
 !checkpoints/.gitkeep
+
+# ALTRO
+guida_mia.txt

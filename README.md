@@ -80,6 +80,11 @@ dove --gt è il path verso le immagini di ground truth, mentre --restored quelle
 
 > **RBS** is a CUDA-accelerated super-resolution framework supporting arbitrary upscaling factors, built on top of backbone architectures such as **EDSR** and **RDN**.
 
+
+<p align="center">
+  <img src="other_files/teaser_architecture2.jpg" width="900" alt="RBS Teaser"/>
+</p>
+
 ---
 
 ## 📋 Table of Contents
@@ -179,7 +184,7 @@ CUDA_VISIBLE_DEVICES=5 python inference/evaluate_inference.py \
 ### DIV2K Cropped Benchmark
 
 > This benchmark uses **720×720 centre-cropped** DIV2K images to measure inference speed and GPU memory usage.
-> It is **not** an official benchmark — use the official DIV2K splits for paper comparisons.
+> It is **not** an official benchmark — use the official DIV2K benchmark for paper comparisons.
 
 **Step 1** — Download and extract the benchmark dataset:
 
@@ -268,7 +273,7 @@ python inference/evaluate_metrics_dists.py \
 
 ## 📌 Quick-Reference: Model & Checkpoint Table
 
-| Model Name | Backbone | Checkpoint File | Recommended Scale |
-|---|---|---|---|
-| `RBS_v7` | RDN | `RDN_rbs_v7.ckpt` | ×2, ×3, ×4 |
-| `RBS_v8` | EDSR | `EDSR_rbs_v8.ckpt` | ×4 |
+| Model Name | Backbone | Checkpoint File 
+|---|---|---|
+| `RBS_v7` | RDN | `RDN_rbs_v7.ckpt` |
+| `RBS_v8` | EDSR | `EDSR_rbs_v8.ckpt` |

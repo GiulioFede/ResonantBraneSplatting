@@ -76,13 +76,36 @@ dove --gt è il path verso le immagini di ground truth, mentre --restored quelle
 
 
 
-# 🌌 Resonant Brane Splatting for Arbitrary-Scale Super-Resolution
+<p align="center">
+  <img src="other_files/icon.png" height="90" alt="RBS icon"/>
+</p>
 
-> **RBS** is a CUDA-accelerated super-resolution framework supporting arbitrary upscaling factors, built on top of backbone architectures such as **EDSR** and **RDN**.
-
+<h1 align="center">Resonant Brane Splatting for Arbitrary-Scale Super-Resolution</h1>
 
 <p align="center">
-  <img src="other_files/teaser_architecture2.jpg" width="900" alt="RBS Teaser"/>
+  <b>Arbitrary-Scale Super-Resolution (ASR)</b> reconstructs images at continuous magnification factors.
+  Recent methods accelerate inference by replacing computationally heavy implicit neural decoders with
+  explicit <b>2D Gaussian Splatting (GS)</b>. However, since standard Gaussians are smooth low-pass
+  primitives, modeling edges and fine textures requires multiple overlapping, well-aligned splats,
+  creating severe bottlenecks during rasterization.
+</p>
+
+<p align="center">
+  To address this, we introduce <b>Resonant Brane Splatting (RBS)</b>, a feed-forward ASR framework.
+  RBS replaces flat Gaussians with <b>Branes</b> — expressive primitives that emit spatially varying
+  colors to natively model local contrast and complex textures within a single footprint.
+  We achieve this by augmenting the standard Gaussian envelope with internal
+  <b>Gaussian-Hermite modes</b>, assigning a distinct color coefficient to each:
+  the zero-order mode recovers standard GS, while higher-order modes capture high frequencies.
+</p>
+
+<p align="center">
+  Because Branes provide a mathematically richer formulation than simple Gaussians, far fewer
+  primitives need to overlap to reconstruct a given target pixel. We exploit this with an
+  <b>efficient fully differentiable rasterizer</b> featuring a precise culling strategy based
+  on the classical <em>quantum turning point</em>, drastically reducing rendering overhead.
+  Experiments on standard ASR benchmarks show RBS improves reconstruction quality over implicit
+  and GS baselines, while achieving a superior speed–quality trade-off than prior GS methods.
 </p>
 
 ---

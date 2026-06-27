@@ -80,7 +80,8 @@ dove --gt è il path verso le immagini di ground truth, mentre --restored quelle
   <img src="other_files/icon.png" height="90" alt="RBS icon"/>
 </p>
 
-<h1 align="center">Resonant Brane Splatting for Arbitrary-Scale Super-Resolution</h1>
+<h1 align="center">Resonant Brane Splatting</h1>
+<h1 align="center">for Arbitrary-Scale Super-Resolution</h1>
 
 **Resonant Brane Splatting (RBS)** is a highly efficient, feed-forward framework for Arbitrary-Scale Super-Resolution (ASR). It overcomes the rendering bottlenecks of standard 2D Gaussian Splatting by introducing **Branes**—expressive primitives augmented with Gaussian-Hermite modes that naturally model complex textures and sharp edges within a single footprint. Supported by a custom, fully differentiable rasterizer with advanced culling, RBS requires far fewer overlapping primitives, delivering superior reconstruction quality and a state-of-the-art speed-quality trade-off.
 

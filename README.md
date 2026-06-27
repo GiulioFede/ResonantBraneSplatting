@@ -82,30 +82,11 @@ dove --gt è il path verso le immagini di ground truth, mentre --restored quelle
 
 <h1 align="center">Resonant Brane Splatting for Arbitrary-Scale Super-Resolution</h1>
 
-<p align="center">
-  <b>Arbitrary-Scale Super-Resolution (ASR)</b> reconstructs images at continuous magnification factors.
-  Recent methods accelerate inference by replacing computationally heavy implicit neural decoders with
-  explicit <b>2D Gaussian Splatting (GS)</b>. However, since standard Gaussians are smooth low-pass
-  primitives, modeling edges and fine textures requires multiple overlapping, well-aligned splats,
-  creating severe bottlenecks during rasterization.
-</p>
+**Resonant Brane Splatting (RBS)** is a highly efficient, feed-forward framework for Arbitrary-Scale Super-Resolution (ASR). It overcomes the rendering bottlenecks of standard 2D Gaussian Splatting by introducing **Branes**—expressive primitives augmented with Gaussian-Hermite modes that naturally model complex textures and sharp edges within a single footprint. Supported by a custom, fully differentiable rasterizer with advanced culling, RBS requires far fewer overlapping primitives, delivering superior reconstruction quality and a state-of-the-art speed-quality trade-off.
+
 
 <p align="center">
-  To address this, we introduce <b>Resonant Brane Splatting (RBS)</b>, a feed-forward ASR framework.
-  RBS replaces flat Gaussians with <b>Branes</b> — expressive primitives that emit spatially varying
-  colors to natively model local contrast and complex textures within a single footprint.
-  We achieve this by augmenting the standard Gaussian envelope with internal
-  <b>Gaussian-Hermite modes</b>, assigning a distinct color coefficient to each:
-  the zero-order mode recovers standard GS, while higher-order modes capture high frequencies.
-</p>
-
-<p align="center">
-  Because Branes provide a mathematically richer formulation than simple Gaussians, far fewer
-  primitives need to overlap to reconstruct a given target pixel. We exploit this with an
-  <b>efficient fully differentiable rasterizer</b> featuring a precise culling strategy based
-  on the classical <em>quantum turning point</em>, drastically reducing rendering overhead.
-  Experiments on standard ASR benchmarks show RBS improves reconstruction quality over implicit
-  and GS baselines, while achieving a superior speed–quality trade-off than prior GS methods.
+  <img src="other_files/teaser_architecture2.jpg" width="900" alt="RBS Teaser"/>
 </p>
 
 ---

@@ -1,0 +1,18 @@
+# 1) Ignora tutte le cartelle __pycache__ ovunque nel progetto
+__pycache__/
+
+# 2, 3, 5) Ignora le cartelle di build e info (percorsi relativi alla root del repo)
+utils/brane_utils/build/
+utils/brane_utils/branecuda.egg-info/
+resonant_brane_splatting.egg-info/
+
+# 4) Ignora la cartella results
+results/
+
+# 6) Ignora il contenuto di data/benchmarks, ma mantieni la cartella
+data/benchmarks/*
+!data/benchmarks/.gitkeep
+
+# 7) Ignora il contenuto di checkpoints, ma mantieni la cartella
+checkpoints/*
+!checkpoints/.gitkeep

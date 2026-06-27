@@ -1,0 +1,7 @@
+opencv-python-headless
+lightning
+einops
+gdown
+lpips
+DISTS-pytorch
+matplotlib

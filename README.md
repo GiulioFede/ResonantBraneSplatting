@@ -7,6 +7,14 @@
   <sub>for Arbitrary-Scale Super-Resolution</sub>
 </h1>
 
+<p align="center">
+  <a href="https://arxiv.org/abs/2606.29453">
+    <img src="https://img.shields.io/badge/arXiv-2606.29453-b31b1b.svg?style=flat" alt="arXiv Paper">
+  </a>
+  <br>
+  <i>* This paper is currently under peer review *</i>
+</p>
+
 **Resonant Brane Splatting (RBS)** is a highly efficient, feed-forward framework for Arbitrary-Scale Super-Resolution (ASR). It overcomes the rendering bottlenecks of standard 2D Gaussian Splatting by introducing **Branes**—expressive primitives augmented with Gaussian-Hermite modes that naturally model complex textures and sharp edges within a single footprint. Supported by a custom, fully differentiable rasterizer with advanced culling, RBS requires far fewer overlapping primitives, delivering superior reconstruction quality and a state-of-the-art speed-quality trade-off.
 
 
@@ -206,3 +214,21 @@ python inference/evaluate_metrics_dists.py \
 |---|---|---|
 | `RBS_v7` | RDN | `RDN_rbs_v7.ckpt` |
 | `RBS_v8` | EDSR | `EDSR_rbs_v8.ckpt` |
+
+
+---
+
+## 📜 Citation
+
+If you find this code or research useful, please consider citing our paper:
+
+```bibtex
+@misc{federico2026resonantbranesplattingarbitraryscale,
+      title={Resonant Brane Splatting for Arbitrary-Scale Super-Resolution}, 
+      author={Giulio Federico and Giuseppe Amato and Claudio Gennaro and Fabio Carrara and Marco Di Benedetto},
+      year={2026},
+      eprint={2606.29453},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={[https://arxiv.org/abs/2606.29453](https://arxiv.org/abs/2606.29453)}, 
+}

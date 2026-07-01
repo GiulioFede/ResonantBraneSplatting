@@ -96,7 +96,7 @@ def main(args):
 
 
 if __name__ == "__main__":
-    # Default args here will train DiGT-XL/2 with the hyperparameters we used in our paper (except training iters).
+    # Default args
     parser = argparse.ArgumentParser()
     parser.add_argument("--path_to_image_dataset", type=str)
     parser.add_argument("--results-dir", type=str, default="./results")

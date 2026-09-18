@@ -12,7 +12,7 @@
     <img src="https://img.shields.io/badge/arXiv-2606.29453-b31b1b.svg?style=flat" alt="arXiv Paper">
   </a>
   <a href="https://huggingface.co/spaces/FedericoGiulio/ResonantBraneSplatting">
-    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-FFD21E.svg?style=flat" alt="Hugging Face Spaces">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-FFD21E.svg?style=flat" alt="Hugging Face Demo">
   </a>
   <br>
   <i>* This paper is currently under peer review *</i>

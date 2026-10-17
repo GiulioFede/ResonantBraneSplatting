@@ -8,7 +8,7 @@
 </h1>
 
 <h2 align="center">
-**🎉 Accepted at the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2027**
+🎉 Accepted at the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2027
 </h2>
 
 <p align="center">

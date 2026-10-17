@@ -19,7 +19,6 @@
     <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-FFD21E.svg?style=flat" alt="Hugging Face Demo">
   </a>
   <br>
-  <i>* This paper is currently under peer review *</i>
 </p>
 
 **Resonant Brane Splatting (RBS)** is a highly efficient, feed-forward framework for Arbitrary-Scale Super-Resolution (ASR). It overcomes the rendering bottlenecks of standard 2D Gaussian Splatting by introducing **Branes**—expressive primitives augmented with Gaussian-Hermite modes that naturally model complex textures and sharp edges within a single footprint. Supported by a custom, fully differentiable rasterizer with advanced culling, RBS requires far fewer overlapping primitives, delivering superior reconstruction quality and a state-of-the-art speed-quality trade-off.

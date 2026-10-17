@@ -7,6 +7,10 @@
   <sub>for Arbitrary-Scale Super-Resolution</sub>
 </h1>
 
+<h2 align="center">
+**🎉 Accepted at the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2027**
+</h2>
+
 <p align="center">
   <a href="https://arxiv.org/abs/2606.29453">
     <img src="https://img.shields.io/badge/arXiv-2606.29453-b31b1b.svg?style=flat" alt="arXiv Paper">

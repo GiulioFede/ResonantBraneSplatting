@@ -563,5 +563,79 @@ python inference/evaluate_metrics.py \
 <script src="static/js/app.js"></script>
 <script src="static/js/fit.js"></script>
 <script src="static/js/charts.js"></script>
+<!-- ===== Related research menu ===== -->
+<script>
+(function () {
+  var LABEL = 'Related research';  
+  var isRBS = document.title.indexOf('Resonant Brane') === 0;
+  var other = isRBS
+    ? { url: 'https://giuliofede.github.io/QuADA-GS/',
+        title: 'QuADA-GS: Adaptive Densification for Sparse Gaussian Splatting',
+        sub: 'Gaussians only where the image needs them, for arbitrary-scale super-resolution.',
+        go: 'Open the QuADA-GS project page' }
+    : { url: 'https://giuliofede.github.io/ResonantBraneSplatting/',
+        title: 'Resonant Brane Splatting for Arbitrary-Scale Super-Resolution',
+        sub: 'A new primitive inspired by quantum physics: Gaussians filled with Hermite modes.',
+        go: 'Open the RBS project page' };
+  var theme = isRBS
+    ? '--rel-bg:var(--panel);--rel-ink:var(--ink);--rel-mute:var(--ink-2);--rel-line:var(--line-2);--rel-accent:var(--pink);--rel-hover:var(--panel-2);--rel-radius:12px;--rel-shadow:0 22px 54px rgba(0,0,0,.6);'
+    : '--rel-bg:#fff;--rel-ink:var(--ink);--rel-mute:var(--ink-2);--rel-line:var(--ink);--rel-accent:var(--pink);--rel-hover:var(--tint);--rel-radius:0;--rel-shadow:6px 6px 0 var(--blue);';
+
+  var css = '#related{' + theme + '}' + `
+#related { position: relative; flex: none; font-family: var(--display); }
+#related .rel-btn { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font: 600 .92rem/1 var(--display); color: var(--rel-ink); background: transparent; border: 1.5px solid var(--rel-line); border-radius: calc(var(--rel-radius) * .7); padding: 8px 14px; }
+#related .rel-btn:hover, #related .rel-btn[aria-expanded="true"] { color: var(--rel-accent); border-color: var(--rel-accent); }
+#related .rel-btn:focus-visible { outline: 2px solid var(--rel-accent); outline-offset: 3px; }
+#related .rel-btn svg { width: 12px; height: 12px; transition: transform .2s; }
+#related .rel-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+#related .rel-panel { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%); width: min(390px, calc(100vw - 36px)); padding: 16px; background: var(--rel-bg); color: var(--rel-ink); border: 1.5px solid var(--rel-line); border-radius: var(--rel-radius); box-shadow: var(--rel-shadow); }
+#related .rel-panel[hidden] { display: none; }
+#related .rel-head { margin: 0 0 10px; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--rel-mute); }
+#related .rel-item { display: block; text-decoration: none; color: inherit; padding: 14px 16px; border: 1.5px solid var(--rel-line); border-radius: calc(var(--rel-radius) * .6); }
+#related .rel-item:hover, #related .rel-item:focus-visible { background: var(--rel-hover); border-color: var(--rel-accent); outline: none; }
+#related .rel-title { display: block; font-size: 1.05rem; font-weight: 700; line-height: 1.25; }
+#related .rel-sub { display: block; margin-top: 4px; font-size: .88rem; line-height: 1.4; color: var(--rel-mute); }
+#related .rel-go { display: block; margin-top: 10px; font-size: .85rem; font-weight: 700; color: var(--rel-accent); }
+@media (prefers-reduced-motion: no-preference) {
+  #related .rel-panel { animation: rel-in .16s ease-out; }
+  @keyframes rel-in { from { opacity: 0; transform: translate(-50%, -6px); } }
+}
+@media (min-width: 1200px) { #related { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); } }
+@media (max-width: 900px) {
+  #related { position: static; }
+  #related .rel-panel { left: var(--gut); right: var(--gut); width: auto; transform: none; top: 100%; margin-top: 8px; animation: none; }
+}
+@media (max-width: 640px) {
+  #related .rel-long { display: none; }
+  #related .rel-btn { padding: 7px 11px; font-size: .84rem; }
+}`;
+
+  var header = document.querySelector('.topbar'); if (!header) return;
+  var style = document.createElement('style'); style.textContent = css; document.head.appendChild(style);
+
+  var words = LABEL.split(' '), first = words.shift(), rest = words.join(' ');
+  var box = document.createElement('div'); box.id = 'related';
+  box.innerHTML =
+    '<button class="rel-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="relPanel">' +
+      '<span>' + first + (rest ? ' <span class="rel-long">' + rest + '</span>' : '') + '</span>' +
+      '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.2 6 8l4-3.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+    '</button>' +
+    '<div class="rel-panel" id="relPanel" hidden>' +
+      '<p class="rel-head">Also accepted at WACV 2027</p>' +
+      '<a class="rel-item" href="' + other.url + '">' +
+        '<span class="rel-title">' + other.title + '</span>' +
+        '<span class="rel-sub">' + other.sub + '</span>' +
+        '<span class="rel-go">' + other.go + ' &rarr;</span>' +
+      '</a>' +
+    '</div>';
+  header.insertBefore(box, header.querySelector('.topbar-nav'));
+
+  var btn = box.querySelector('.rel-btn'), panel = box.querySelector('.rel-panel');
+  function set(open) { btn.setAttribute('aria-expanded', open ? 'true' : 'false'); panel.hidden = !open; }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); set(panel.hidden); });
+  document.addEventListener('click', function (e) { if (!box.contains(e.target)) set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { set(false); btn.focus(); } });
+})();
+</script>
 </body>
 </html>

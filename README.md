@@ -18,6 +18,9 @@
   <a href="https://huggingface.co/spaces/FedericoGiulio/ResonantBraneSplatting">
     <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-FFD21E.svg?style=flat" alt="Hugging Face Demo">
   </a>
+  <a href="https://giuliofede.github.io/ResonantBraneSplatting/">
+    <img src="https://img.shields.io/badge/Project-Page-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Project page">
+  </a>
   <br>
 </p>
 
